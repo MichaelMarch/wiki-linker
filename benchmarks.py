@@ -24,7 +24,8 @@ def benchmark_find_ladder(input):
 
 
 # The first arguemnt should be a function reference (not a function call!) with 0 parameters
-# The second one speciefies how many times the function will be called.
+# The second one is the input to the `benchamrk` function
+# The third one speciefies how many times the function will be called.
 def run(benchmark, input, number_of_runs=100):
     print(f"-------------{benchmark.__name__}-------------")
 
