@@ -1,13 +1,11 @@
 # Wiki Linker
 
-A python bot for finding a path (of articles) between 2 wikipedia articles.
-
-Note: **Currrently the project can only list links of the supplied articles.**
+A python bot for finding a path (of articles) between 2 Wikipedia articles.
 
 ## Usage
 
 ### Prerequisites and Installing
-To try this project you should have the modules that are listed in [requirements.txt](requirements.txt) installed. The best way to do it is to create a virtual environment:
+To try this project you should have the modules that are listed in [requirements.txt](requirements.txt) installed. The best way to do this is to create a virtual environment:
 
 ```
 python -m venv .venv
@@ -40,85 +38,52 @@ For example if you run:
 python wiki_linker.py William_L._Webber 12_Downing_Street
 ```
 
-The output should be (as of 06-14-2022):
+The output should be (as of 06-15-2022):
 <details> 
   <summary>The output (click the arrow on the left to see it)</summary>
-    Article A:<br>
-    Michigan_Senate<br>
-    Michigan%27s_25th_Senate_district<br>
-    Wesley_P._Andrus<br>
-    List_of_mayors_of_Saginaw,_Michigan<br>
-    Ogden,_New_York<br>
-    Democratic_Party_(United_States)<br>
-    Michigan<br>
-    Saginaw_County,_Michigan<br>
-    Democratic_National_Convention<br>
+    The ladder is:<br>
+    William_L._Webber<br>
     1876_Michigan_gubernatorial_election<br>
-    Charles_Croswell<br>
-    Odd_Fellows<br>
-    Knights_Templar<br>
-    Saginaw,_Michigan<br>
-    Find_a_Grave<br>
-    Library_of_Michigan<br>
-    Henry_Chamberlain_(Michigan_politician)<br>
-    Governor_of_Michigan<br>
-    Orlando_M._Barnes<br><br>
-    Article B:<br>
-    Downing_Street<br>
-    City_of_Westminster<br>
-    Chief_Whip<br>
-    Prime_Minister_of_the_United_Kingdom<br>
-    Judge_Advocate_General_of_the_Armed_Forces<br>
-    Colonial_Office<br>
-    10_Downing_Street<br>
-    11_Downing_Street<br>
-    9_Downing_Street<br>
-    Stucco<br>
-    Charles_Barry<br>
-    Cabinet_Office<br>
-    Whitehall<br>
-    East_India_Company<br>
-    Herbert_Gladstone,_1st_Viscount_Gladstone<br>
-    Chancellor_of_the_Exchequer<br>
-    William_Ewart_Gladstone<br>
-    Home_Secretary<br>
-    Recruitment_to_the_British_Army_during_the_First_World_War<br>
-    Asquith_coalition_ministry<br>
-    Liberal_Party_(UK)<br>
-    John_Gulland<br>
-    Alastair_Campbell<br>
-    Tony_Blair<br>
-    Privy_Council_of_the_United_Kingdom<br>
-    Gordon_Brown<br>
-    Evening_Standard<br>
-    British_History_Online<br>
-    Life_(magazine)<br>
-    British_Newspaper_Archive<br>
-    Yorkshire_Evening_Post<br>
-    The_Daily_Telegraph<br>
-    Privy_Council_Office_(United_Kingdom)<br>
-    First_Lord_of_the_Treasury<br>
-    Parliamentary_Secretary_to_the_Treasury<br>
-    Chief_Mouser_to_the_Cabinet_Office<br>
-    Principal_Private_Secretary_to_the_Prime_Minister_of_the_United_Kingdom<br>
-    Parliamentary_Private_Secretary_to_the_Prime_Minister<br>
-    Political_Secretary_to_the_Prime_Minister_of_the_United_Kingdom<br>
-    Downing_Street_Chief_of_Staff<br>
-    Downing_Street_Director_of_Communications<br>
-    Downing_Street_Press_Secretary<br>
-    Number_10_Policy_Unit<br>
-    Downing_Street_Press_Briefing_Room<br>
-    Partygate<br>
-    Geographic_coordinate_system<br>
+    1835_Michigan_gubernatorial_election<br>
+    John_Biddle_(Michigan_politician)<br>
+    Aaron_T._Bliss<br>
+    51st_United_States_Congress<br>
+    100th_United_States_Congress<br>
+    1987_in_the_United_States<br>
+    03_Greedo<br>
+    Blink-182<br>
+    2008_South_Carolina_Learjet_60_crash<br>
+    BBC<br>
+    2014_Scottish_independence_referendum<br>
+    Deputy_Prime_Minister_of_the_United_Kingdom<br>
+    12_Downing_Street<br><br>
+    The number of unique articles found is: 36455
 </details>  
+
+
+### Benchmarking
+
+There are set of benchmarks that show how different implementations perform. To try them out refer to the [benchmark.py](benchmark.py) file.
+
+```
+python benchmark.py
+```
+
+I also provide some results of my own from testing the project in [benchmark_results/](benchmark_results/)
+
+## Implementation
+
+Since Wikipedia is enormous a simple algorithm that just checks all articles in the order of their appearance is not enough. To speed things up there needs to be a way for the algorithm to make smart decisions based on the available data.
+
+One way of doing that is assigning priorities for each algorithm's path. A priority is a number that determines how many pages an article has with the end page in common. The reasoning is that if an article has a high amount of pages in common with the end page chances are they're closely related to each other.
 
 ## Development
 
-The project was created and tested only on Windows. Don't know if the project runs on other platform. I am 90% sure it should hae run faster on UNIX.
+The project was created and tested only on Windows. Don't know if the project runs on other platforms. I am 90% sure it will run faster on UNIX.
 
 Any contribution is welcome :)
 
 ## License
 
-This project is unlicensed - please refer to [LICENSE](LICENSE) file for more details.
+This project is unlicensed - please refer to the [LICENSE](LICENSE) file for more details.
 
