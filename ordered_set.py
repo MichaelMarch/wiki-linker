@@ -13,23 +13,13 @@ class OrderedSet:
     def __contains__(self, value) -> bool:
         return value in self.map
 
+    def __iter__(self):
+        yield from self.map.keys()
+
     def add(self, value):
         if value not in self.map:
             self.map[value] = None
             self.set.add(value)
-    
-    def __iter__(self):
-        yield from self.map.keys()
-
+    # TODO: benchmark set.intersecion
     def count_intersections_with(self, ordered_set: "OrderedSet") -> int:
         return len(set.intersection(self.set, ordered_set.set))
-
-    def get(self, index: int):
-        return list(self.map.keys())[index]
-
-    def slice(self, from_index: int, to_index: int):
-        return list(self.map.keys())[from_index: to_index]
-
-    def remove(self, value):
-        del self.map[value]
-        self.set.discard(value)

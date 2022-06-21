@@ -33,37 +33,9 @@ pip install -r requirements.txt
 python wiki_linker.py article_A article_B
 ```
 
-For example if you run:
-```
-python wiki_linker.py William_L._Webber 12_Downing_Street
-```
-
-The output should be (as of 06-15-2022):
-<details> 
-  <summary>The output (click the arrow on the left to see it)</summary>
-    The ladder is:<br>
-    William_L._Webber<br>
-    1876_Michigan_gubernatorial_election<br>
-    1835_Michigan_gubernatorial_election<br>
-    John_Biddle_(Michigan_politician)<br>
-    Aaron_T._Bliss<br>
-    51st_United_States_Congress<br>
-    100th_United_States_Congress<br>
-    1987_in_the_United_States<br>
-    03_Greedo<br>
-    Blink-182<br>
-    2008_South_Carolina_Learjet_60_crash<br>
-    BBC<br>
-    2014_Scottish_independence_referendum<br>
-    Deputy_Prime_Minister_of_the_United_Kingdom<br>
-    12_Downing_Street<br><br>
-    The number of unique articles found is: 36455
-</details>  
-
-
 ### Benchmarking
 
-There are set of benchmarks that show how different implementations perform. To try them out refer to the [benchmark.py](benchmark.py) file.
+There are set of benchmarks that show how different implementations perform. To try them out refer to the [benchmarks.py](benchmarks.py) file.
 
 ```
 python benchmark.py
