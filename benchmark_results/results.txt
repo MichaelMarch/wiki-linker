@@ -1,0 +1,22 @@
+Available cpu's: 12
+
+-------------benchmark_find_ladder-------------
+Input: Fruit, Strawberry
+Output: ['Fruit', 'Strawberry']
+Total time for 1 run(s): 0.43255689999999997 seconds
+-------------benchmark_find_ladder-------------
+Input: Slug, Strawberry
+Output: ['Slug', 'Petunia', 'Physalis_peruviana', 'Physalis', 'Strawberry']
+Total time for 1 run(s): 20.248151200000002 seconds
+-------------benchmark_find_ladder-------------
+Input: Europe, Slug
+Output: ['Europe', 'Afro-Eurasia', 'Oligocene', 'Mollusca', 'Slug']
+Total time for 1 run(s): 16.571011999999996 seconds
+-------------benchmark_find_ladder-------------
+Input: Back_in_Time_(2015_film), Zabolotiv
+Output: ['Back_in_Time_(2015_film)', 'Netflix', 'Polish_language', 'Belarus', 'Ukrainians', 'Boykos', 'Kalush_Raion', 'Bilshivtsi', 'Zabolotiv']
+Total time for 1 run(s): 34.2263242 seconds
+-------------benchmark_find_ladder-------------
+Input: France, Ottawa
+Output: ['France', 'Saint_Pierre_and_Miquelon', 'Quebec', 'Montreal', 'Ottawa']
+Total time for 1 run(s): 20.840288 seconds
