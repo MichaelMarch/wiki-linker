@@ -1,40 +1,43 @@
-import wiki_linker
+import os
 import timeit
 
-EXTRACT_INPUTS = [
-    "Europe"
-]
+from ladders.local_wiki_ladder_finder import LocalWikiLadderFinder
+
 
 LADDER_INPUTS = [
-    ("William_L._Webber", "12_Downing_Street"),
+    ("Fruit", "Strawberry"),
     ("Slug", "Strawberry"),
-    ("Gregory_Krumbock", "Potok_Cave")
+    ("Europe", "Slug"),
+    ("Back_in_Time_(2015_film)", "Zabolotiv"),
+    ("France", "Ottawa"),
+    ("Peloponnese", "Back_in_Time_(2015_film)")
 ]
-
-
-def benchmark_extract_links(input):
-    print(f"Input: {input[0]}")
-    wiki_linker.extract_links(input[0])
 
 
 def benchmark_find_ladder(input):
+    ladder_finder = LocalWikiLadderFinder(*input, 100)
     print(f"Input: {input[0]}, {input[1]}")
-    print(f"Output: {wiki_linker.find_ladder(input[0], input[1])}")
-    print(f"The number of unique articles found is: {len(wiki_linker.extracted_articles)}")
+    print(f"Output: {ladder_finder.find()}")
 
 
-# The first arguemnt should be a function reference (not a function call!) with 0 parameters
-# The second one is the input to the `benchamrk` function
-# The third one speciefies how many times the function will be called.
-def run(benchmark, input, number_of_runs=100):
+def run(benchmark, input, number_of_runs=1):
+    """
+    `benchmark`: pointer to a bencharking function (see above)
+    `input`: a 2 element tuple where each element is an article name
+    `number_of_runs`: the amount of times that the benchmark should be repeated
+    """
     print(f"-------------{benchmark.__name__}-------------")
-
     total_duration = timeit.Timer(lambda: benchmark(input)).timeit(number=number_of_runs)
 
     print(f"Total time for {number_of_runs} run(s): {total_duration} seconds")
     if number_of_runs > 1:
-        print(f"The average time was: {total_duration/number_of_runs} seconds")
+        print(f"The average time was: {total_duration / number_of_runs} seconds")
 
 
 if __name__ == "__main__":
-    run(benchmark_find_ladder, LADDER_INPUTS[0], 1)
+    print(f"Available cpu's: {os.cpu_count()}")
+    print()
+    
+    #for input in LADDER_INPUTS:
+    #    run(benchmark_find_ladder, input)
+    run(benchmark_find_ladder, LADDER_INPUTS[-1])
