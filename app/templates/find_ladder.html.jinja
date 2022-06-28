@@ -1,0 +1,71 @@
+{% extends "base.html.jinja" %}
+{% set find_ladder_active = "active" %}
+{% block message_content %}
+    {% for message in messages %}
+        {% if message %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Warning!</strong> {{ message }}
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock message_content %}
+{% block right_content %}
+    <form action="{{ url_for('find_ladder') }}"
+          method="POST"
+          style="padding-top:10%;padding-bottom:10%"
+          class="flex-fill">
+        <div class="row g-2 align-items-center">
+            <div class="col-2">
+                <label for="starting_article" class="form-label">Starting article</label>
+            </div>
+            <div class="col-auto">
+                <input type="text"
+                       class="form-control"
+                       name="_starting_article"
+                       id="_starting_article"
+                       aria-describedby="startingArticleHelp"
+                       value="{{ starting_article }}">
+            </div>
+            <div class="col-auto">
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="window.location.href='{{ url_for('find_ladder', _starting_article=starting_article, _ending_article=ending_article, random=1) }}'">
+                    <i class="bi bi-dice-5"></i>
+                </button>
+            </div>
+        </div>
+        <br>
+        <div class="row g-2 align-items-center">
+            <div class="col-2">
+                <label for="ending_article" class="form-label">Ending article</label>
+            </div>
+            <div class="col-auto">
+                <input type="text"
+                       class="form-control"
+                       id="_ending_article"
+                       name="_ending_article"
+                       aria-describedby="endingArticleHelp"
+                       value="{{ ending_article }}">
+            </div>
+            <div class="col-auto">
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="window.location.href='{{ url_for('find_ladder', _starting_article=starting_article, _ending_article=ending_article, random=2) }}'">
+                    <i class="bi bi-dice-5"></i>
+                </button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row g-3 align-items-center">
+            <div class="col-2"></div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success">Find</button>
+            </div>
+        </div>
+    </form>
+{% endblock right_content %}

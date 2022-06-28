@@ -1,20 +1,19 @@
 from bs4 import BeautifulSoup, SoupStrainer
 from queue import PriorityQueue
-from ordered_set import OrderedSet
 
 import requests
 
+from app.ordered_set import OrderedSet
+
 
 class LadderFinder:
-    def __init__(self, base_url: str, attribute_filter: dict[str, bool], start_article: str, end_article: str, extract_limit: int, ladder_limit):
+    def __init__(self, base_url: str, attribute_filter: dict[str, bool], extract_limit: int, ladder_limit):
         """
         An abstract interface for finding a path ("ladder") between two links on a given webpage.
         It's recommended that the webpage has a structured and predictable paths like wikis
         """
         self.base_url = base_url
         self.attribute_filter = attribute_filter
-        self.start_article = start_article
-        self.end_article = end_article
         self.extract_limit = extract_limit
         self.ladder_limit = ladder_limit
 
@@ -44,19 +43,19 @@ class LadderFinder:
     # TODO: implement threaded version of this function for articles that have very few links in common.
     #       most of the time when articles aren't closely related it takes way too much time to find a path.
     # TODO: try Breadth-first search algorithm instead of prioritizing
-    def find(self) -> list[str]:
+    def find(self, start_article: str, end_article: str) -> list[str]:
         """Find an optimal path between `start_article` and `end_article`"""
-        end_page_links: OrderedSet = self._extract_links(self.end_article)
+        end_page_links: OrderedSet = self._extract_links(end_article)
 
         # keep track of seen article to avoid infinite loop
         extracted_articles = dict[str, ]()
-        extracted_articles[self.start_article] = None
+        extracted_articles[start_article] = None
 
         # This priority queue implementation uses lowest first ordering meaing that the items with the lowest priority come first.
         # This makes it so enqueued items need to have negative priorities (less then 0)
         queue = PriorityQueue()
         # Starting with priority 0 doesn't matter since it's immediately dequeued
-        queue.put((0, [self.start_article]))
+        queue.put((0, [start_article]))
 
         while not queue.empty():
             ladder: list[str] = queue.get()[1]
@@ -69,7 +68,7 @@ class LadderFinder:
             links = self._extract_links(ladder[-1])
 
             for link in links:
-                if link == self.end_article:
+                if link == end_article:
                     ladder.append(link)
                     return ladder
 

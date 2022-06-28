@@ -1,10 +1,10 @@
 from ladders.ladder_finder import LadderFinder
-from ordered_set import OrderedSet
+from app.ordered_set import OrderedSet
 from bs4 import BeautifulSoup
 
 
 class WikiLadderFinder(LadderFinder):
-    def __init__(self, start_article: str, end_article: str, extract_limit: int, ladder_limit = 20):
+    def __init__(self, extract_limit: int, ladder_limit=20):
         """
         A class for finding a path ("ladder") between two links on Wikipedia online.
 
@@ -21,7 +21,7 @@ class WikiLadderFinder(LadderFinder):
         #    "/w/index.php?title=Coconut_leaf_caterpillar&action=edit&redlink=1" <- Some kind of ambiguous link that doesn't make sense to parse
         self.characters_blacklist = ('#', ':', '?')
 
-        super().__init__("http://en.wikipedia.org/wiki/", attribute_filter, start_article, end_article, extract_limit, ladder_limit)
+        super().__init__("http://en.wikipedia.org/wiki/", attribute_filter, extract_limit, ladder_limit)
 
     def _parse_dom(self, dom: BeautifulSoup):
         urls = OrderedSet()

@@ -1,6 +1,6 @@
 # Wiki Linker
 
-A python bot for finding a path (of articles) between 2 Wikipedia articles.
+A web application for finding a path (of articles) between 2 Wikipedia articles.
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ You need to prepare several things before you can test the project:
 - Python 3.7+
 - At least 55 GB of free disk space
 
-Note: This project can scrape both [Wikipedia](https://wikipedia.org/) and any other site that hosts the Wikipedia project. I advise you not to scrape any of the existing mirrors and instead host one yourself. [Why you should do it](https://en.wikipedia.org/wiki/Wikipedia:Database_download#Please_do_not_use_a_web_crawler).
+Note: This project can scrape both [Wikipedia](https://wikipedia.org/) and any other site that hosts the Wikipedia project. I advise you to not scrape the Wikipedia or any of the existing mirrors and instead host one yourself. [See why you should do it](https://en.wikipedia.org/wiki/Wikipedia:Database_download#Please_do_not_use_a_web_crawler).
 
 ## Installing
 
@@ -18,7 +18,8 @@ Note: This project can scrape both [Wikipedia](https://wikipedia.org/) and any o
 
 Head over to https://www.kiwix.org/en/download/ and get kiwix for your platform.
 Once you open it search for Wikipedia and download the wiki that has around 46 GB.
-To host the wiki press (CTRL + I) and click "Start kiwix server". Then click "Open in browser", click on the tile that has "Wikipedia" on it and write down the url.
+To host the wiki press (CTRL + I) and click "Start kiwix server". Then click "Open in browser", click on the tile that has "Wikipedia" on it and write down the url.  
+The url should look like this: `http://{your_local_ip}:8080/wikipedia_en_all_nopic_{year}-{month}/A/`
 
 ### Project setup
 
@@ -38,9 +39,11 @@ Then enter the environment:
 ```
 # for Windows (powershell)
 .\.venv\Scripts\activate
+$env:FLASK_ENV='development'
 
 # or for UNIX systems
 source .venv\Scripts\activate.sh
+export FLASK_ENV='development'
 ```
 
 Finally you should install the required modules by running:
@@ -52,7 +55,7 @@ pip install -r requirements.txt
 ### Running the project
 
 ```
-python wiki_linker.py article_A article_B
+flask run
 ```
 
 ## Benchmarking
@@ -63,6 +66,7 @@ Several articles were chosen to test this program. The results can be seen in [b
 Running the benchmark:
 
 ```
+# Currently doesn't work. I will make it available through the web interface.
 python benchmark.py
 ```
 
