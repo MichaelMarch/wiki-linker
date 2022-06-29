@@ -1,1 +1,38 @@
 {% extends "base.html.jinja" %}
+{% block content %}
+    <div id="carouselExampleControls"
+         data-bs-wrap="false"
+         class="carousel slide d-flex"
+         style="width:100vh;">
+        <div class="carousel-inner">
+            {% for key, value in infos.items() %}
+                <div class="carousel-item {{ value[2] }}">
+                    <div class='d-block text-center'>
+                        <h2>
+                            <b>{{ key }}</b>
+                        </h2>
+                    </div>
+                    <img src="{{ value[0] }}" class="d-block" style="width:100%;height:450px">
+                    <div class="d-block text-center" style="height:10vh;">
+                        <h4>{{ value[1] }}</h4>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+            <i style="font-size:60px;color:black;" class="bi bi-chevron-left btn"></i>
+            {# <span class="carousel-control-prev-icon" aria-hidden="true"></span> #}
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+            <i style="font-size:60px;color:black;" class="bi bi-chevron-right btn"></i>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+{% endblock content %}

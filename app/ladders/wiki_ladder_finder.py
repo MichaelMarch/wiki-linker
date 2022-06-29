@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 
 class WikiLadderFinder(LadderFinder):
-    def __init__(self, extract_limit: int, ladder_limit=20):
+    def __init__(self, extract_limit: int = None, ladder_limit=20):
         """
         A class for finding a path ("ladder") between two links on Wikipedia online.
 

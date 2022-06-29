@@ -13,59 +13,57 @@
         {% endif %}
     {% endfor %}
 {% endblock message_content %}
-{% block right_content %}
+{% block content %}
     <form action="{{ url_for('find_ladder') }}"
           method="POST"
-          style="padding-top:10%;padding-bottom:10%"
-          class="flex-fill">
+          style="width:auto">
         <div class="row g-2 align-items-center">
-            <div class="col-2">
+            <div style="width:20vh;">
                 <label for="starting_article" class="form-label">Starting article</label>
             </div>
             <div class="col-auto">
                 <input type="text"
                        class="form-control"
-                       name="_starting_article"
-                       id="_starting_article"
+                       name="starting_article"
+                       id="starting_article"
                        aria-describedby="startingArticleHelp"
                        value="{{ starting_article }}">
             </div>
             <div class="col-auto">
                 <button type="button"
                         class="btn btn-primary"
-                        onclick="window.location.href='{{ url_for('find_ladder', _starting_article=starting_article, _ending_article=ending_article, random=1) }}'">
+                        onclick="window.location.href='{{ url_for('find_ladder', starting_article=starting_article, ending_article=ending_article, random=1) }}'">
                     <i class="bi bi-dice-5"></i>
                 </button>
             </div>
         </div>
         <br>
         <div class="row g-2 align-items-center">
-            <div class="col-2">
+            <div style="width:20vh;">
                 <label for="ending_article" class="form-label">Ending article</label>
             </div>
             <div class="col-auto">
                 <input type="text"
                        class="form-control"
-                       id="_ending_article"
-                       name="_ending_article"
+                       id="ending_article"
+                       name="ending_article"
                        aria-describedby="endingArticleHelp"
                        value="{{ ending_article }}">
             </div>
             <div class="col-auto">
                 <button type="button"
                         class="btn btn-primary"
-                        onclick="window.location.href='{{ url_for('find_ladder', _starting_article=starting_article, _ending_article=ending_article, random=2) }}'">
+                        onclick="window.location.href='{{ url_for('find_ladder', starting_article=starting_article, ending_article=ending_article, random=2) }}'">
                     <i class="bi bi-dice-5"></i>
                 </button>
             </div>
         </div>
         <br>
         <br>
-        <div class="row g-3 align-items-center">
-            <div class="col-2"></div>
-            <div class="col-auto">
+        <div class="row justify-content-center">
+            <div class="col-1">
                 <button type="submit" class="btn btn-success">Find</button>
             </div>
         </div>
     </form>
-{% endblock right_content %}
+{% endblock content %}
