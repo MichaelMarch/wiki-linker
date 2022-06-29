@@ -12,7 +12,8 @@ class LocalWikiLadderFinder(LadderFinder):
 
         attribute_filter = {"href": True, "title": True, "class": False, "accesskey": False, "id": False}
 
-        super().__init__("http://127.0.0.1:8080/wikipedia_en_all_maxi_2022-05/A/", attribute_filter, session, extract_limit, ladder_limit)
+        super().__init__("http://127.0.0.1:8080/wikipedia_en_all_maxi_2022-05/A/",
+                         attribute_filter, session, extract_limit, ladder_limit)
 
     def _parse_dom(self, dom: BeautifulSoup):
         urls = OrderedSet()
@@ -31,7 +32,9 @@ class LocalWikiLadderFinder(LadderFinder):
 
         # lxml is around 33% faster than html.parser
         dom = BeautifulSoup(text, "lxml", parse_only=SoupStrainer('p'))
-        for part in dom.find('p').get_text().split('.'):
-            if len(part) > 30:
-                return part
+        for p in dom.find_all('p'):
+            p = p.get_text()
+            for part in p.split('.'):
+                if len(part) > 30:
+                    return part
         return ""

@@ -49,9 +49,9 @@ class LadderFinder:
         endending_article_links: OrderedSet = await self._extract_links(ending_article)
 
         if len(starting_article_links) == 0:
-            return ["It's impossible to find the ladder because the starting article doesn't have any valid links or it just doesn't exists"]
+            return ["It's impossible to find the ladder because the starting article doesn't have any valid links or it just doesn't exist."]
         if len(endending_article_links) == 0:
-            return ["It's impossible to find the ladder because the ending article doesn't have any valid links or it just doesn't exists"]
+            return ["It's impossible to find the ladder because the ending article doesn't have any valid links or it just doesn't exist."]
 
         self.extracted_articles[starting_article] = None
 
@@ -75,7 +75,7 @@ class LadderFinder:
             if processed_ladder:
                 return processed_ladder
 
-        return None
+        return ["Unhandled exception"]
 
     async def _process_ladder(self, queue: PriorityQueue, ladder: list[str], ending_article: str, endending_article_links: str) -> list[str]:
         links = await self._extract_links(ladder[-1])
